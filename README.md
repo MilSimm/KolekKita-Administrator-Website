@@ -86,4 +86,8 @@ All API routes are defined in `server/routes.ts` with proper validation and erro
 
 ## Production Deployment
 
+<<<<<<< HEAD
 The application is configured for deployment on Replit with automatic environment variable management."# decentralized-app" 
+=======
+The application is configured for deployment on Replit with automatic environment variable management.
+>>>>>>> 2e5495c (1st Commit)
