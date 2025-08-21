@@ -241,14 +241,14 @@ export default function Users() {
     <Layout title="User Management">
       <div className="space-y-6">
         {/* Header */}
-        <Card className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white">
+        <Card className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white">
           <CardContent className="p-8">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold mb-2 text-white">
                   User Management 👥
                 </h1>
-                <p className="text-blue-100">
+                <p className="text-green-100">
                   Manage system users, roles, and permissions
                 </p>
               </div>
@@ -307,11 +307,11 @@ export default function Users() {
 
             {/* User Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 rounded-lg border-blue-200 border">
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 rounded-lg border-green-200 border">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
                   {allUsers.filter(u => u.role === "admin").length}
                 </div>
-                <div className="text-sm text-blue-600 dark:text-blue-400">Admins</div>
+                <div className="text-sm text-green-600 dark:text-green-400">Admins</div>
               </div>
               <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 rounded-lg border-green-200 border">
                 <div className="text-2xl font-bold text-green-600 dark:text-green-400">
@@ -319,17 +319,17 @@ export default function Users() {
                 </div>
                 <div className="text-sm text-green-600 dark:text-green-400">Junk Shops</div>
               </div>
-              <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 rounded-lg border-purple-200 border">
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+              <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 rounded-lg border-green-200 border">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
                   {allUsers.filter(u => u.role === "collector").length}
                 </div>
-                <div className="text-sm text-purple-600 dark:text-purple-400">Collectors</div>
+                <div className="text-sm text-green-600 dark:text-green-400">Collectors</div>
               </div>
-              <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950 dark:to-orange-900 rounded-lg border-orange-200 border">
-                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+              <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 rounded-lg border-green-200 border">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
                   {allUsers.filter(u => u.role === "resident" || u.role === "customer").length}
                 </div>
-                <div className="text-sm text-orange-600 dark:text-orange-400">Residents</div>
+                <div className="text-sm text-green-600 dark:text-green-400">Residents</div>
               </div>
             </div>
           </CardContent>

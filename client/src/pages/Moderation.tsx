@@ -191,12 +191,9 @@ export default function Moderation() {
       
       const getFilterPrefix = () => {
         switch(filterType) {
-          case 'urgent': return 'urgent-reports';
           case 'pending': return 'pending-reports';
-          case 'high-priority': return 'high-priority-reports';
           case 'resolved': return 'resolved-reports';
-          case 'content': return 'content-reports';
-          case 'user': return 'user-reports';
+          case 'priority': return 'priority-reports';
           default: return 'moderation-reports';
         }
       };
@@ -286,24 +283,12 @@ export default function Moderation() {
   // Filter reports based on current view
   const getDisplayedReports = () => {
     switch(filterType) {
-      case 'urgent':
-        return reportQueue.filter(r => r.priority === 'High');
       case 'pending':
         return reportQueue.filter(r => r.status === 'pending');
-      case 'high-priority':
-        return reportQueue.filter(r => r.priority === 'High' || r.priority === 'Medium');
       case 'resolved':
         return reportQueue.filter(r => r.status === 'resolved');
-      case 'content':
-        return reportQueue.filter(r => r.category === 'Review' || r.type.includes('Content'));
-      case 'user':
-        return reportQueue.filter(r => r.category === 'User');
-      case 'recent':
-        return reportQueue.filter(r => {
-          const reportDate = new Date(r.date);
-          const daysDiff = (new Date().getTime() - reportDate.getTime()) / (1000 * 3600 * 24);
-          return daysDiff <= 7;
-        });
+      case 'priority':
+        return reportQueue.filter(r => r.priority === 'High' || r.priority === 'Medium');
       default:
         return reportQueue;
     }
@@ -314,13 +299,9 @@ export default function Moderation() {
   // Get filter display info
   const getFilterInfo = () => {
     switch(filterType) {
-      case 'urgent': return { title: 'Urgent Reports Queue', description: 'High priority reports requiring immediate attention' };
-      case 'pending': return { title: 'Pending Review Queue', description: 'Reports waiting for admin review and action' };
-      case 'high-priority': return { title: 'High Priority Reports', description: 'High and medium priority reports' };
+      case 'pending': return { title: 'Pending Reports', description: 'Reports waiting for admin review and action' };
       case 'resolved': return { title: 'Resolved Reports', description: 'Reports that have been resolved' };
-      case 'content': return { title: 'Content Reports', description: 'Reports related to content and reviews' };
-      case 'user': return { title: 'User Reports', description: 'Reports related to user accounts' };
-      case 'recent': return { title: 'Recent Reports', description: 'Reports from the last 7 days' };
+      case 'priority': return { title: 'Priority Reports', description: 'High and medium priority reports' };
       default: return { title: 'All Reports Queue', description: 'Review and moderate flagged content' };
     }
   };
@@ -331,12 +312,12 @@ export default function Moderation() {
     <Layout title="Content Moderation">
       <div className="space-y-8">
         {/* Hero Section */}
-        <Card className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white">
+        <Card className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white">
           <CardContent className="p-8">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold mb-2">Content Moderation 🛡️</h1>
-                <p className="text-blue-100">Review reports, reviews, and manage platform content</p>
+                <p className="text-green-100">Review reports, reviews, and manage platform content</p>
               </div>
               <div className="flex items-center space-x-4">
                 <Button 
@@ -358,13 +339,9 @@ export default function Moderation() {
                     >
                       <Filter className="h-4 w-4 mr-2" />
                       {filterType === 'all' ? 'All Reports' : 
-                       filterType === 'urgent' ? 'Urgent Reports' :
-                       filterType === 'pending' ? 'Review Queue' :
-                       filterType === 'high-priority' ? 'High Priority' :
-                       filterType === 'resolved' ? 'Resolved' :
-                       filterType === 'content' ? 'Content Reports' :
-                       filterType === 'user' ? 'User Reports' :
-                       filterType === 'recent' ? 'Recent Reports' : 'All Reports'}
+                       filterType === 'pending' ? 'View Pending' :
+                       filterType === 'resolved' ? 'View Resolved' :
+                       filterType === 'priority' ? 'View Priority Level' : 'All Reports'}
                       <ChevronDown className="h-4 w-4 ml-2" />
                     </Button>
                   </DropdownMenuTrigger>
@@ -384,46 +361,17 @@ export default function Moderation() {
                     </DropdownMenuItem>
                     <DropdownMenuItem 
                       onClick={() => {
-                        setFilterType('urgent');
-                        const urgentCount = reportQueue.filter(r => r.priority === 'High').length;
-                        toast({
-                          title: "Urgent Reports",
-                          description: `Showing ${urgentCount} urgent reports`,
-                          variant: "destructive"
-                        });
-                      }}
-                      className={filterType === 'urgent' ? 'bg-muted' : ''}
-                    >
-                      <AlertTriangle className="h-4 w-4 mr-2" />
-                      Urgent Reports
-                    </DropdownMenuItem>
-                    <DropdownMenuItem 
-                      onClick={() => {
                         setFilterType('pending');
                         const pendingCount = reportQueue.filter(r => r.status === 'pending').length;
                         toast({
-                          title: "Review Queue",
-                          description: `Showing ${pendingCount} pending reviews`
+                          title: "Pending Reports",
+                          description: `Showing ${pendingCount} pending reports`
                         });
                       }}
                       className={filterType === 'pending' ? 'bg-muted' : ''}
                     >
-                      <Calendar className="h-4 w-4 mr-2" />
-                      Review Queue
-                    </DropdownMenuItem>
-                    <DropdownMenuItem 
-                      onClick={() => {
-                        setFilterType('high-priority');
-                        const highPriorityCount = reportQueue.filter(r => r.priority === 'High' || r.priority === 'Medium').length;
-                        toast({
-                          title: "High Priority",
-                          description: `Showing ${highPriorityCount} high priority reports`
-                        });
-                      }}
-                      className={filterType === 'high-priority' ? 'bg-muted' : ''}
-                    >
-                      <Flag className="h-4 w-4 mr-2" />
-                      High Priority
+                      <Clock className="h-4 w-4 mr-2" />
+                      View Pending
                     </DropdownMenuItem>
                     <DropdownMenuItem 
                       onClick={() => {
@@ -437,53 +385,21 @@ export default function Moderation() {
                       className={filterType === 'resolved' ? 'bg-muted' : ''}
                     >
                       <CheckCircle className="h-4 w-4 mr-2" />
-                      Resolved
+                      View Resolved
                     </DropdownMenuItem>
                     <DropdownMenuItem 
                       onClick={() => {
-                        setFilterType('content');
-                        const contentCount = reportQueue.filter(r => r.category === 'Review' || r.type.includes('Content')).length;
+                        setFilterType('priority');
+                        const priorityCount = reportQueue.filter(r => r.priority === 'High' || r.priority === 'Medium').length;
                         toast({
-                          title: "Content Reports",
-                          description: `Showing ${contentCount} content-related reports`
+                          title: "Priority Reports",
+                          description: `Showing ${priorityCount} priority reports`
                         });
                       }}
-                      className={filterType === 'content' ? 'bg-muted' : ''}
+                      className={filterType === 'priority' ? 'bg-muted' : ''}
                     >
-                      <MessageSquare className="h-4 w-4 mr-2" />
-                      Content Reports
-                    </DropdownMenuItem>
-                    <DropdownMenuItem 
-                      onClick={() => {
-                        setFilterType('user');
-                        const userCount = reportQueue.filter(r => r.category === 'User').length;
-                        toast({
-                          title: "User Reports",
-                          description: `Showing ${userCount} user-related reports`
-                        });
-                      }}
-                      className={filterType === 'user' ? 'bg-muted' : ''}
-                    >
-                      <ShieldCheck className="h-4 w-4 mr-2" />
-                      User Reports
-                    </DropdownMenuItem>
-                    <DropdownMenuItem 
-                      onClick={() => {
-                        setFilterType('recent');
-                        const recentCount = reportQueue.filter(r => {
-                          const reportDate = new Date(r.date);
-                          const daysDiff = (new Date().getTime() - reportDate.getTime()) / (1000 * 3600 * 24);
-                          return daysDiff <= 7;
-                        }).length;
-                        toast({
-                          title: "Recent Reports",
-                          description: `Showing ${recentCount} reports from last 7 days`
-                        });
-                      }}
-                      className={filterType === 'recent' ? 'bg-muted' : ''}
-                    >
-                      <Clock className="h-4 w-4 mr-2" />
-                      Recent (7 days)
+                      <Flag className="h-4 w-4 mr-2" />
+                      View Priority Level
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -494,15 +410,15 @@ export default function Moderation() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-blue-600 dark:text-blue-400">Pending Reports</p>
-                  <p className="text-3xl font-bold text-blue-900 dark:text-blue-100">{moderationStats.pendingReports}</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Pending Reports</p>
+                  <p className="text-3xl font-bold text-green-900 dark:text-green-100">{moderationStats.pendingReports}</p>
                 </div>
-                <div className="w-12 h-12 bg-blue-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <AlertTriangle className="h-6 w-6 text-blue-600" />
+                <div className="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <AlertTriangle className="h-6 w-6 text-green-600" />
                 </div>
               </div>
             </CardContent>
@@ -522,29 +438,29 @@ export default function Moderation() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 border-purple-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-purple-600 dark:text-purple-400">Content Violations</p>
-                  <p className="text-3xl font-bold text-purple-900 dark:text-purple-100">{moderationStats.contentViolations}</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Content Violations</p>
+                  <p className="text-3xl font-bold text-green-900 dark:text-green-100">{moderationStats.contentViolations}</p>
                 </div>
-                <div className="w-12 h-12 bg-purple-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <Flag className="h-6 w-6 text-purple-600" />
+                <div className="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <Flag className="h-6 w-6 text-green-600" />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950 dark:to-orange-900 border-orange-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-orange-600 dark:text-orange-400">Actions Taken</p>
-                  <p className="text-3xl font-bold text-orange-900 dark:text-orange-100">{moderationStats.actionsTaken}</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Actions Taken</p>
+                  <p className="text-3xl font-bold text-green-900 dark:text-green-100">{moderationStats.actionsTaken}</p>
                 </div>
-                <div className="w-12 h-12 bg-orange-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <ShieldCheck className="h-6 w-6 text-orange-600" />
+                <div className="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <ShieldCheck className="h-6 w-6 text-green-600" />
                 </div>
               </div>
             </CardContent>
@@ -639,23 +555,15 @@ export default function Moderation() {
               <div className="text-center py-12 text-muted-foreground">
                 <ShieldCheck className="h-16 w-16 mx-auto mb-4" />
                 <p className="text-lg font-medium">
-                  {filterType === 'urgent' && "No Urgent Reports"}
-                  {filterType === 'pending' && "No Pending Reviews"}
+                  {filterType === 'pending' && "No Pending Reports"}
                   {filterType === 'resolved' && "No Resolved Reports"}
-                  {filterType === 'content' && "No Content Reports"}
-                  {filterType === 'user' && "No User Reports"}
-                  {filterType === 'recent' && "No Recent Reports"}
-                  {filterType === 'high-priority' && "No High Priority Reports"}
+                  {filterType === 'priority' && "No Priority Reports"}
                   {filterType === 'all' && "No Reports to Review"}
                 </p>
                 <p className="text-sm">
-                  {filterType === 'urgent' && "No high-priority reports need immediate attention"}
                   {filterType === 'pending' && "All reports have been reviewed"}
                   {filterType === 'resolved' && "No reports have been resolved yet"}
-                  {filterType === 'content' && "No content-related reports found"}
-                  {filterType === 'user' && "No user-related reports found"}
-                  {filterType === 'recent' && "No reports from the last 7 days"}
-                  {filterType === 'high-priority' && "No high or medium priority reports"}
+                  {filterType === 'priority' && "No high or medium priority reports"}
                   {filterType === 'all' && "All content is clean and compliant"}
                 </p>
               </div>

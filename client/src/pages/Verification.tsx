@@ -199,14 +199,14 @@ export default function Verification() {
     <Layout title="Junk Shop Verification">
       <div className="space-y-8">
         {/* Hero Section */}
-        <Card className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white">
+        <Card className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white">
           <CardContent className="p-8">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold mb-2">
                   Junk Shop Verification 🏪
                 </h1>
-                <p className="text-blue-100">
+                <p className="text-green-100">
                   Review and verify junk shop document submissions
                 </p>
               </div>
@@ -262,15 +262,15 @@ export default function Verification() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-blue-600 dark:text-blue-400">Pending</p>
-                  <p className="text-3xl font-bold text-blue-900 dark:text-blue-100">{verificationStats.pending}</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Pending</p>
+                  <p className="text-3xl font-bold text-green-900 dark:text-green-100">{verificationStats.pending}</p>
                 </div>
-                <div className="w-12 h-12 bg-blue-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <Clock className="h-6 w-6 text-blue-600" />
+                <div className="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <Clock className="h-6 w-6 text-green-600" />
                 </div>
               </div>
             </CardContent>
@@ -304,15 +304,15 @@ export default function Verification() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 border-purple-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-purple-600 dark:text-purple-400">Approval Rate</p>
-                  <p className="text-3xl font-bold text-purple-900 dark:text-purple-100">{verificationStats.approvalRate}%</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Approval Rate</p>
+                  <p className="text-3xl font-bold text-green-900 dark:text-green-100">{verificationStats.approvalRate}%</p>
                 </div>
-                <div className="w-12 h-12 bg-purple-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <Badge className="bg-purple-600 text-white">{verificationStats.approvalRate}%</Badge>
+                <div className="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <Badge className="bg-green-600 text-white">{verificationStats.approvalRate}%</Badge>
                 </div>
               </div>
             </CardContent>

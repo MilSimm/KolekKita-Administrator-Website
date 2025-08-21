@@ -32,14 +32,14 @@ export default function System() {
     <Layout title="System Management">
       <div className="space-y-8">
         {/* Hero Section */}
-        <Card className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white">
+        <Card className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white">
           <CardContent className="p-8">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold mb-2">
                   System Management ⚙️
                 </h1>
-                <p className="text-blue-100">
+                <p className="text-green-100">
                   Firebase configuration, notifications, and system settings
                 </p>
               </div>
@@ -123,16 +123,16 @@ export default function System() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-blue-600 dark:text-blue-400">System Status</p>
-                  <p className="text-3xl font-bold text-blue-900 dark:text-blue-100">{systemStats.systemStatus}</p>
-                  <p className="text-xs text-blue-600">99.9% uptime</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">System Status</p>
+                  <p className="text-3xl font-bold text-green-900 dark:text-green-100">{systemStats.systemStatus}</p>
+                  <p className="text-xs text-green-600">99.9% uptime</p>
                 </div>
-                <div className="w-12 h-12 bg-blue-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <Server className="h-6 w-6 text-blue-600" />
+                <div className="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <Server className="h-6 w-6 text-green-600" />
                 </div>
               </div>
             </CardContent>
@@ -153,31 +153,31 @@ export default function System() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 border-purple-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-purple-600 dark:text-purple-400">Notifications Sent</p>
-                  <p className="text-3xl font-bold text-purple-900 dark:text-purple-100">{systemStats.notificationsSent}</p>
-                  <p className="text-xs text-purple-600">Total messages</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Notifications Sent</p>
+                  <p className="text-3xl font-bold text-green-900 dark:text-green-100">{systemStats.notificationsSent}</p>
+                  <p className="text-xs text-green-600">Total messages</p>
                 </div>
-                <div className="w-12 h-12 bg-purple-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <Bell className="h-6 w-6 text-purple-600" />
+                <div className="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <Bell className="h-6 w-6 text-green-600" />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950 dark:to-orange-900 border-orange-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-orange-600 dark:text-orange-400">Storage Used</p>
-                  <p className="text-3xl font-bold text-orange-900 dark:text-orange-100">{systemStats.storageUsed} MB</p>
-                  <p className="text-xs text-orange-600">File storage</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Storage Used</p>
+                  <p className="text-3xl font-bold text-green-900 dark:text-green-100">{systemStats.storageUsed} MB</p>
+                  <p className="text-xs text-green-600">File storage</p>
                 </div>
-                <div className="w-12 h-12 bg-orange-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <Shield className="h-6 w-6 text-orange-600" />
+                <div className="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <Shield className="h-6 w-6 text-green-600" />
                 </div>
               </div>
             </CardContent>

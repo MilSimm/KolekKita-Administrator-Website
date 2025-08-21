@@ -219,12 +219,12 @@ export default function Analytics() {
     <Layout title="Platform Analytics">
       <div className="space-y-6">
         {/* Hero Section */}
-        <Card className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white">
+        <Card className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl font-bold mb-1">Platform Analytics 📊</h1>
-                <p className="text-blue-100">Comprehensive insights and performance metrics</p>
+                <p className="text-green-100">Comprehensive insights and performance metrics</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Button 
@@ -262,18 +262,18 @@ export default function Analytics() {
 
         {/* Key Stats Grid - Enhanced with more database metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-blue-600 dark:text-blue-400">Total Users</p>
-                  <p className="text-2xl font-bold text-blue-900 dark:text-blue-100">{analyticsStats.totalUsers.toLocaleString()}</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Total Users</p>
+                  <p className="text-2xl font-bold text-green-900 dark:text-green-100">{analyticsStats.totalUsers.toLocaleString()}</p>
                   <div className="flex items-center mt-1">
-                    <span className="text-xs text-blue-600">Collectors: {analyticsStats.collectors} | Junk Shops: {analyticsStats.junkShops}</span>
+                    <span className="text-xs text-green-600">Collectors: {analyticsStats.collectors} | Junk Shops: {analyticsStats.junkShops}</span>
                   </div>
                 </div>
-                <div className="w-10 h-10 bg-blue-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <Users className="h-5 w-5 text-blue-600" />
+                <div className="w-10 h-10 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <Users className="h-5 w-5 text-green-600" />
                 </div>
               </div>
             </CardContent>
@@ -296,35 +296,35 @@ export default function Analytics() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 border-purple-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-purple-600 dark:text-purple-400">Total Weight (kg)</p>
-                  <p className="text-2xl font-bold text-purple-900 dark:text-purple-100">{analyticsStats.totalWeight.toLocaleString()}</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Total Weight (kg)</p>
+                  <p className="text-2xl font-bold text-green-900 dark:text-green-100">{analyticsStats.totalWeight.toLocaleString()}</p>
                   <div className="flex items-center mt-1">
-                    <span className="text-xs text-purple-600">Avg Rating: {analyticsStats.averageRating || 'N/A'}</span>
+                    <span className="text-xs text-green-600">Avg Rating: {analyticsStats.averageRating || 'N/A'}</span>
                   </div>
                 </div>
-                <div className="w-10 h-10 bg-purple-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <Recycle className="h-5 w-5 text-purple-600" />
+                <div className="w-10 h-10 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <Recycle className="h-5 w-5 text-green-600" />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950 dark:to-orange-900 border-orange-200">
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-orange-600 dark:text-orange-400">Revenue</p>
-                  <p className="text-2xl font-bold text-orange-900 dark:text-orange-100">Rp{analyticsStats.revenue.toLocaleString()}</p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Revenue</p>
+                  <p className="text-2xl font-bold text-green-900 dark:text-green-100">Rp{analyticsStats.revenue.toLocaleString()}</p>
                   <div className="flex items-center mt-1">
-                    <span className="text-xs text-orange-600">Pending Verifications: {analyticsStats.pendingVerifications}</span>
+                    <span className="text-xs text-green-600">Pending Verifications: {analyticsStats.pendingVerifications}</span>
                   </div>
                 </div>
-                <div className="w-10 h-10 bg-orange-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <DollarSign className="h-5 w-5 text-orange-600" />
+                <div className="w-10 h-10 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                  <DollarSign className="h-5 w-5 text-green-600" />
                 </div>
               </div>
             </CardContent>
