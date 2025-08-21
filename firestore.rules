@@ -1,0 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can read and write their own user document
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      // Admins can read all users
+      allow read: if request.auth != null && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Bookings - customers can create, collectors can update status
+    match /bookings/{bookingId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && 
+        request.auth.uid == resource.data.customerId;
+      allow update: if request.auth != null && (
+        request.auth.uid == resource.data.customerId ||
+        request.auth.uid == resource.data.collectorId ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'junk_shop_owner'])
+      );
+    }
+    
+    // Chat messages - participants can read/write
+    match /chat_messages/{messageId} {
+      allow read, write: if request.auth != null && (
+        request.auth.uid == resource.data.senderId ||
+        request.auth.uid == resource.data.receiverId
+      );
+    }
+    
+    // Reviews - anyone can read, customers can write
+    match /reviews/{reviewId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null &&
+        request.auth.uid == resource.data.reviewerId;
+    }
+    
+    // Notifications - users can read their own
+    match /notifications/{notificationId} {
+      allow read: if request.auth != null &&
+        request.auth.uid == resource.data.userId;
+      allow write: if request.auth != null && (
+        request.auth.uid == resource.data.userId ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'junk_shop_owner'])
+      );
+    }
+  }
+}
