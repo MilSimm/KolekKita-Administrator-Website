@@ -515,7 +515,7 @@ export default function Users() {
                     </div>
                     <div>
                       <label className="text-sm font-medium text-gray-600 dark:text-gray-400">User ID</label>
-                      <p className="text-sm font-mono text-xs">{selectedUser.id}</p>
+                      <p className="text-xs font-mono">{selectedUser.id}</p>
                     </div>
                   </div>
                 </div>

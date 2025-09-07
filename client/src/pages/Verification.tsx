@@ -241,11 +241,22 @@ export default function Verification() {
           <Card className="mb-6 border-orange-200 bg-orange-50">
             <CardContent className="p-4">
               <div className="text-sm">
-                <div>Status: {loading ? 'Loading...' : 'Loaded'}</div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <div className={`w-3 h-3 rounded-full ${loading ? 'bg-yellow-500' : error ? 'bg-red-500' : allVerifications.length === 0 ? 'bg-orange-500' : 'bg-green-500'}`}></div>
+                  <span className="font-medium">Database Connection Status</span>
+                </div>
+                <div>Status: {loading ? 'Connecting...' : error ? 'Connection Error' : 'Connected'}</div>
                 <div>Found {allVerifications.length} total verifications ({junkshopVerifications.length} junk shops)</div>
-                {error && <div className="text-red-600">Error: {error}</div>}
+                {error && <div className="text-red-600 mt-2">Error: {error}</div>}
                 {!loading && allVerifications.length === 0 && !error && (
-                  <div className="text-blue-600">No verifications found in Firestore. Make sure the "verifications" collection exists.</div>
+                  <div className="text-blue-600 mt-2">
+                    <p>No verifications found in Firestore. This could mean:</p>
+                    <ul className="list-disc list-inside ml-4 mt-1">
+                      <li>The "verifications" collection doesn't exist yet</li>
+                      <li>No verification data has been submitted</li>
+                      <li>You may need to initialize sample data</li>
+                    </ul>
+                  </div>
                 )}
                 {allVerifications.length > 0 && (
                   <div className="mt-2">

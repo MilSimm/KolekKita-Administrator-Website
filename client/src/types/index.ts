@@ -52,3 +52,12 @@ export interface DriverLocation {
   status: "available" | "en_route" | "delivering";
   currentBookingId?: string;
 }
+
+export interface Activity {
+  type: string;
+  message: string;
+  details: string;
+  timestamp: Date;
+  icon: any;
+  color: string;
+}

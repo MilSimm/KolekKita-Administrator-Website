@@ -179,6 +179,107 @@ export const initializeFirebaseData = async (currentUserId: string) => {
       await addDoc(collection(db, "notifications"), notificationData);
     }
 
+    // Sample Verifications for Junk Shop Owners
+    const sampleVerifications = [
+      {
+        userId: userIds[1], // Jakarta Recycling Center
+        userRole: "junk_shop_owner",
+        documentType: "business_license",
+        documentURL: "https://example.com/business-license.pdf",
+        shopName: "Jakarta Recycling Center",
+        businessLicense: "BL-2024-JKT-001",
+        address: "Jl. Industri No. 45, Jakarta Utara",
+        phoneNumber: "+62812345679",
+        status: "pending",
+        submissionDate: new Date(),
+        metadata: {
+          submissionTimestamp: new Date(),
+          documentSize: "2.5MB",
+          fileType: "PDF"
+        },
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: userIds[1], // Another verification
+        userRole: "junk_shop_owner", 
+        documentType: "tax_certificate",
+        documentURL: "https://example.com/tax-cert.pdf",
+        shopName: "Jakarta Recycling Center",
+        businessLicense: "BL-2024-JKT-001",
+        address: "Jl. Industri No. 45, Jakarta Utara",
+        phoneNumber: "+62812345679",
+        status: "approved",
+        submissionDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+        reviewedBy: "admin",
+        reviewedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), // 5 days ago
+        adminNotes: "All documents verified and approved",
+        metadata: {
+          submissionTimestamp: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+          documentSize: "1.8MB", 
+          fileType: "PDF"
+        },
+        createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+        updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+      }
+    ];
+
+    for (const verificationData of sampleVerifications) {
+      await addDoc(collection(db, "verifications"), verificationData);
+    }
+
+    // Sample Reports for Content Moderation
+    const sampleReports = [
+      {
+        type: "Inappropriate Content",
+        category: "Review",
+        description: "Low rating review with suspicious content",
+        reportedBy: "System Detection",
+        priority: "Medium",
+        status: "pending",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        type: "Suspicious Account", 
+        category: "User",
+        description: "Account with incomplete profile information",
+        reportedBy: "System Validation",
+        priority: "Low",
+        status: "pending",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }
+    ];
+
+    for (const reportData of sampleReports) {
+      await addDoc(collection(db, "reports"), reportData);
+    }
+
+    // Sample System Logs
+    const sampleSystemLogs = [
+      {
+        level: "info",
+        message: "User registration completed successfully",
+        timestamp: new Date(),
+        userId: userIds[1],
+        action: "user_registration",
+        createdAt: new Date(),
+      },
+      {
+        level: "warning",
+        message: "Multiple failed login attempts detected",
+        timestamp: new Date(),
+        userId: null,
+        action: "security_alert", 
+        createdAt: new Date(),
+      }
+    ];
+
+    for (const logData of sampleSystemLogs) {
+      await addDoc(collection(db, "system_logs"), logData);
+    }
+
     console.log("Sample data initialized successfully!");
     return true;
   } catch (error) {
