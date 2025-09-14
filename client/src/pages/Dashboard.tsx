@@ -226,120 +226,85 @@ export default function Dashboard() {
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Recent Platform Activity */}
-          <Card className="border bg-card">
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle>Recent Platform Activity</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Live updates from across the platform
-                  </p>
-                </div>
-                {recentActivity.length > 0 && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setShowMoreActivities(!showMoreActivities)}
-                    className="flex items-center space-x-2"
-                  >
-                    {showMoreActivities ? (
-                      <>
-                        <ChevronUp className="h-4 w-4" />
-                        <span>Show Less</span>
-                      </>
-                    ) : (
-                      <>
-                        <ChevronDown className="h-4 w-4" />
-                        <span>Show More</span>
-                      </>
-                    )}
-                  </Button>
-                )}
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {recentActivity.length > 0 ? (
-                <>
-                  {recentActivity.map((activity, index) => {
-                    const Icon = activity.icon;
-                    return (
-                      <div key={index} className="flex items-center space-x-3 p-3 bg-muted rounded-lg">
-                        <div className={`w-8 h-8 ${activity.color} rounded-full flex items-center justify-center`}>
-                          <Icon className="h-4 w-4 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="font-medium">{activity.message}</p>
-                          <p className="text-muted-foreground text-sm">
-                            {activity.details} • {activity.timestamp.toLocaleString('en-US', {
-                              year: 'numeric',
-                              month: 'short',
-                              day: 'numeric',
-                              hour: '2-digit',
-                              minute: '2-digit',
-                              hour12: true
-                            })}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                  {!showMoreActivities && (
-                    <div className="text-center pt-2">
-                      <p className="text-xs text-muted-foreground">
-                        Showing {recentActivity.length} of recent activities
-                      </p>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div className="text-center py-8 text-muted-foreground">
-                  <Calendar className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                  <p>No recent activity</p>
-                  <p className="text-sm">Platform activity will appear here</p>
-                </div>
-              )}
-            </CardContent>
-          </Card>
 
-          {/* Admin Quick Actions */}
-          <Card className="border bg-card">
-            <CardHeader>
-              <CardTitle>Admin Quick Actions</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Quick access to admin functions
-              </p>
-            </CardHeader>
-            <CardContent className="flex flex-col h-full p-6">
-              <div className="flex flex-col space-y-6 flex-1">
-                <Link href="/users">
-                  <Button variant="outline" className="w-full h-20 justify-start hover:bg-blue-50 hover:border-blue-200 text-lg font-medium">
-                    <Users className="h-6 w-6 mr-4" />
-                    Manage Users
-                  </Button>
-                </Link>
-                <Link href="/verification">
-                  <Button variant="outline" className="w-full h-20 justify-start hover:bg-green-50 hover:border-green-200 text-lg font-medium">
-                    <CheckCircle className="h-6 w-6 mr-4" />
-                    Verify Junk Shops
-                  </Button>
-                </Link>
-                <Link href="/moderation">
-                  <Button variant="outline" className="w-full h-20 justify-start hover:bg-purple-50 hover:border-purple-200 text-lg font-medium">
-                    <Shield className="h-6 w-6 mr-4" />
-                    Review Reports
-                  </Button>
-                </Link>
-                <Link href="/analytics">
-                  <Button variant="outline" className="w-full h-20 justify-start hover:bg-orange-50 hover:border-orange-200 text-lg font-medium">
-                    <BarChart3 className="h-6 w-6 mr-4" />
-                    View Analytics
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
+
         </div>
+
+        {/* Recent Platform Activity - Full Width */}
+        <Card className="border bg-card">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle>Recent Platform Activity</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Live updates from across the platform
+                </p>
+              </div>
+              {recentActivity.length > 0 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowMoreActivities(!showMoreActivities)}
+                  className="flex items-center space-x-2"
+                >
+                  {showMoreActivities ? (
+                    <>
+                      <ChevronUp className="h-4 w-4" />
+                      <span>Show Less</span>
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="h-4 w-4" />
+                      <span>Show More</span>
+                    </>
+                  )}
+                </Button>
+              )}
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {recentActivity.length > 0 ? (
+              <>
+                {recentActivity.map((activity, index) => {
+                  const Icon = activity.icon;
+                  return (
+                    <div key={index} className="flex items-center space-x-3 p-3 bg-muted rounded-lg">
+                      <div className={`w-8 h-8 ${activity.color} rounded-full flex items-center justify-center`}>
+                        <Icon className="h-4 w-4 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-medium">{activity.message}</p>
+                        <p className="text-muted-foreground text-sm">
+                          {activity.details} • {activity.timestamp.toLocaleString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+                {!showMoreActivities && (
+                  <div className="text-center pt-2">
+                    <p className="text-xs text-muted-foreground">
+                      Showing {recentActivity.length} of recent activities
+                    </p>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="text-center py-8 text-muted-foreground">
+                <Calendar className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                <p>No recent activity</p>
+                <p className="text-sm">Platform activity will appear here</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </Layout>
   );

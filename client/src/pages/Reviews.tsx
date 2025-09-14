@@ -45,19 +45,6 @@ export default function Reviews() {
     return acc;
   }, {} as Record<number, number>);
 
-  const getStarRating = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        className={`h-4 w-4 ${
-          i < rating 
-            ? "text-yellow-400 fill-yellow-400" 
-            : "text-gray-300 dark:text-gray-600"
-        }`}
-      />
-    ));
-  };
-
   const getRatingColor = (rating: number) => {
     if (rating >= 4.5) return "text-green-600 dark:text-green-400";
     if (rating >= 3.5) return "text-yellow-600 dark:text-yellow-400";
@@ -252,9 +239,6 @@ export default function Reviews() {
                     <div className="space-y-3">
                       <div className="flex items-start justify-between">
                         <div className="flex items-center space-x-3">
-                          <div className="flex">
-                            {getStarRating(review.rating)}
-                          </div>
                           <Badge 
                             variant={review.rating >= 4 ? "default" : review.rating >= 3 ? "secondary" : "destructive"}
                             className="text-xs"

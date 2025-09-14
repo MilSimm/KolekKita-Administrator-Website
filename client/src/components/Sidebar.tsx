@@ -13,7 +13,6 @@ import {
   CheckCircle,
   Shield,
   BarChart3,
-  Settings,
   X,
   Menu
 } from "lucide-react";
@@ -30,7 +29,6 @@ const getMenuItems = () => [
   { id: "verification", label: "Verification", icon: CheckCircle, path: "/verification" },
   { id: "moderation", label: "Moderation", icon: Shield, path: "/moderation" },
   { id: "analytics", label: "Analytics", icon: BarChart3, path: "/analytics" },
-  { id: "system", label: "System", icon: Settings, path: "/system" },
 ];
 
 export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {

@@ -11,7 +11,6 @@ import Users from "@/pages/Users";
 import Verification from "@/pages/Verification";
 import Moderation from "@/pages/Moderation";
 import Analytics from "@/pages/Analytics";
-import System from "@/pages/System";
 import Login from "@/pages/Login";
 import NotFound from "@/pages/not-found";
 
@@ -38,7 +37,6 @@ function AppRoutes() {
       <Route path="/verification" component={Verification} />
       <Route path="/moderation" component={Moderation} />
       <Route path="/analytics" component={Analytics} />
-      <Route path="/system" component={System} />
       <Route component={NotFound} />
     </Switch>
   );
