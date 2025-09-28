@@ -7,7 +7,7 @@ import { useFirestoreCollection } from "@/hooks/useFirestore";
 import { useToast } from "@/hooks/use-toast";
 import { orderBy } from "firebase/firestore";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell, ResponsiveContainer, AreaChart, Area } from 'recharts';
-import { TrendingUp, Users, DollarSign, Activity, ArrowUpIcon, ArrowDownIcon, Package, Recycle, MapPin, Download, Calendar } from "lucide-react";
+import { TrendingUp, Users, Activity, ArrowUpIcon, ArrowDownIcon, Package, Recycle, MapPin, Download, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { User, Booking, Review } from "@shared/schema";
 
@@ -55,12 +55,6 @@ export default function Analytics() {
   const junkShopOwners = users.filter(u => u.role === "junk_shop_owner" || u.role === "junkshop");
   const collectors = users.filter(u => u.role === "collector");
   
-  // Calculate real revenue from completed bookings
-  const totalRevenue = completedBookings.reduce((sum, booking) => {
-    const price = parseFloat(booking.price || "0");
-    return sum + price;
-  }, 0);
-  
   // Calculate total weight based on actual completed bookings (realistic average per booking)
   const averageWeightPerBooking = 125; // kg - realistic for household waste collection
   const totalWeight = completedBookings.length * averageWeightPerBooking;
@@ -69,7 +63,6 @@ export default function Analytics() {
     totalUsers: users.length,
     pickupsCompleted: completedBookings.length,
     totalWeight: totalWeight,
-    revenue: totalRevenue,
     junkShops: junkShopOwners.length,
     collectors: collectors.length,
     pendingVerifications: verifications.filter(v => v.status === 'pending' || !v.status).length
@@ -196,7 +189,7 @@ export default function Analytics() {
         </Card>
 
         {/* Key Stats Grid - Enhanced with more database metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
             <CardContent className="p-5">
               <div className="flex items-center justify-between">
@@ -240,23 +233,6 @@ export default function Analytics() {
                 </div>
                 <div className="w-10 h-10 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
                   <Recycle className="h-5 w-5 text-green-600" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200">
-            <CardContent className="p-5">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-green-600 dark:text-green-400">Revenue</p>
-                  <p className="text-2xl font-bold text-green-900 dark:text-green-100">Rp{analyticsStats.revenue.toLocaleString()}</p>
-                  <div className="flex items-center mt-1">
-                    <span className="text-xs text-green-600">Pending Verifications: {analyticsStats.pendingVerifications}</span>
-                  </div>
-                </div>
-                <div className="w-10 h-10 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <DollarSign className="h-5 w-5 text-green-600" />
                 </div>
               </div>
             </CardContent>
