@@ -1,0 +1,10 @@
+{
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": true,
+  "typescript.preferences.includePackageJsonAutoImports": "off",
+  "typescript.suggest.autoImports": false,
+  "files.associations": {
+    "*.jsx": "javascriptreact",
+    "*.js": "javascript"
+  }
+}
